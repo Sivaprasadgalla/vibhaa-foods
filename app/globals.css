@@ -428,7 +428,7 @@ img {
   max-width: 410px;
   margin: 0 0 4px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
@@ -825,7 +825,7 @@ img {
   max-width: 500px;
   margin: 28px 0 33px;
   color: rgba(255, 255, 255, 0.68);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
@@ -958,7 +958,7 @@ img {
   max-width: 280px;
   margin: 25px 0 20px;
   color: rgba(255, 255, 255, 0.52);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.75;
 }
 
@@ -967,7 +967,7 @@ img {
   margin-top: 8px;
   display: block;
   color: rgba(255, 255, 255, 0.75);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .footer-links {
@@ -979,14 +979,14 @@ img {
 .footer-links h3 {
   margin: 4px 0 10px;
   color: #e5b96e;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .footer-links a {
   color: rgba(255, 255, 255, 0.62);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .footer a:hover {
@@ -1218,7 +1218,7 @@ img {
   }
 
   .hero-copy {
-    max-width: 90%;
+    max-width: 100%;
   }
 
   .hero h1 {
@@ -1228,12 +1228,12 @@ img {
 
   .hero-description {
     margin: 23px 0 28px;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.7;
   }
 
   .slider-controls {
-    bottom: 40px;
+    bottom: 20px;
     left: 0;
   }
 
@@ -1279,11 +1279,11 @@ img {
   .about-copy h2,
   .contact-copy h2 {
     font-size: 46px;
-    line-height: 0.98;
+    line-height: 1.1;
   }
 
   .section-heading > p {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .category-search {
@@ -1297,7 +1297,7 @@ img {
   }
 
   .category-card--large {
-    height: 265px;
+    height: auto;
   }
 
   .category-copy {
@@ -1339,7 +1339,7 @@ img {
   }
 
   .about-copy > p:not(.eyebrow) {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .product-grid {
