@@ -191,7 +191,7 @@ function BrandMark({ light = false }: { light?: boolean }) {
   );
 }
 
-function Reveal({
+function TextReveal({
   children,
   className = "",
   delay = 0,
@@ -258,7 +258,9 @@ export default function HomePage() {
             <button
               className="icon-button menu-button"
               type="button"
-              aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-label={
+                menuOpen ? "Close navigation menu" : "Open navigation menu"
+              }
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((open) => !open)}
             >
@@ -267,7 +269,9 @@ export default function HomePage() {
 
             <BrandMark />
 
-            <nav className={`desktop-nav ${menuOpen ? "desktop-nav--open" : ""}`}>
+            <nav
+              className={`desktop-nav ${menuOpen ? "desktop-nav--open" : ""}`}
+            >
               {["Categories", "Our story", "Shop", "Contact"].map((item) => (
                 <a
                   key={item}
@@ -280,7 +284,11 @@ export default function HomePage() {
             </nav>
 
             <div className="header-actions">
-              <a className="icon-button" href="#categories" aria-label="Search products">
+              <a
+                className="icon-button"
+                href="#"
+                aria-label="Search products"
+              >
                 <Icon name="search" />
               </a>
               <a
@@ -297,7 +305,11 @@ export default function HomePage() {
           </div>
         </header>
 
-        <section className="hero" aria-roledescription="carousel" aria-label="Featured collections">
+        <section
+          className="hero"
+          aria-roledescription="carousel"
+          aria-label="Featured collections"
+        >
           <Image
             className="hero-image"
             src="/images/hero-andhra-pantry.png"
@@ -306,28 +318,126 @@ export default function HomePage() {
             priority
             sizes="100vw"
           />
+
           <div className="hero-overlay" />
+
           <div className="shell hero-inner">
-            <AnimatePresence initial={false}>
+            <AnimatePresence mode="wait">
               <motion.div
                 className="hero-copy"
                 key={slide}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.12,
+                    },
+                  },
+                }}
               >
-                <p className="eyebrow eyebrow--light">{heroSlides[slide].eyebrow}</p>
-                <h1>
-                  {heroSlides[slide].title.split("\n").map((line) => (
-                    <span key={line}>{line}</span>
+                <motion.p
+                  className="eyebrow eyebrow--light"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                    },
+                    exit: {
+                      opacity: 0,
+                      y: -10,
+                      transition: { duration: 0.25 },
+                    },
+                  }}
+                >
+                  {heroSlides[slide].eyebrow}
+                </motion.p>
+
+                <motion.h1
+                  variants={{
+                    hidden: {},
+                    visible: {},
+                    exit: {},
+                  }}
+                >
+                  {heroSlides[slide].title.split("\n").map((line, index) => (
+                    <motion.span
+                      key={line}
+                      style={{ display: "block" }}
+                      variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: 0.6,
+                            delay: index * 0.08,
+                            ease: [0.22, 1, 0.36, 1],
+                          },
+                        },
+                        exit: {
+                          opacity: 0,
+                          y: -15,
+                          transition: { duration: 0.25 },
+                        },
+                      }}
+                    >
+                      {line}
+                    </motion.span>
                   ))}
-                </h1>
-                <p className="hero-description">{heroSlides[slide].description}</p>
-                <a className="button button--cream" href={slide === 0 ? "#categories" : "#about"}>
+                </motion.h1>
+
+                <motion.p
+                  className="hero-description"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                    },
+                    exit: {
+                      opacity: 0,
+                      y: -10,
+                      transition: { duration: 0.25 },
+                    },
+                  }}
+                >
+                  {heroSlides[slide].description}
+                </motion.p>
+
+                <motion.a
+                  className="button button--cream"
+                  href={slide === 0 ? "#categories" : "#about"}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                    },
+                    exit: {
+                      opacity: 0,
+                      y: -10,
+                      transition: { duration: 0.25 },
+                    },
+                  }}
+                >
                   {heroSlides[slide].cta}
                   <Icon name="arrow" size={19} />
-                </a>
+                </motion.a>
               </motion.div>
             </AnimatePresence>
 
@@ -336,9 +446,16 @@ export default function HomePage() {
                 <button
                   key={item.title}
                   type="button"
-                  className={index === slide ? "slider-dot slider-dot--active" : "slider-dot"}
+                  className={
+                    index === slide
+                      ? "slider-dot slider-dot--active"
+                      : "slider-dot"
+                  }
                   onClick={() => setSlide(index)}
-                  aria-label={`Show slide ${index + 1}: ${item.title.replace("\n", " ")}`}
+                  aria-label={`Show slide ${index + 1}: ${item.title.replace(
+                    "\n",
+                    " ",
+                  )}`}
                   aria-current={index === slide}
                 />
               ))}
@@ -355,7 +472,15 @@ export default function HomePage() {
             ].map(([icon, label]) => (
               <div key={label} className="trust-item">
                 <Icon name={icon as IconName} size={25} />
-                <span>{label}</span>
+                <motion.span
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.8 }}
+                  variants={reveal}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {label}
+                </motion.span>
               </div>
             ))}
           </div>
@@ -363,7 +488,7 @@ export default function HomePage() {
 
         <section className="section categories-section" id="categories">
           <div className="shell">
-            <Reveal className="section-heading section-heading--split">
+            <TextReveal className="section-heading section-heading--split">
               <div>
                 <p className="eyebrow">A pantry full of stories</p>
                 <h2>Explore by category</h2>
@@ -372,9 +497,9 @@ export default function HomePage() {
                 Familiar flavours, prepared in thoughtful small batches for
                 everyday meals and generous tables.
               </p>
-            </Reveal>
+            </TextReveal>
 
-            <Reveal className="category-search" delay={0.08}>
+            <div className="category-search">
               <Icon name="search" size={24} />
               <label className="sr-only" htmlFor="category-search">
                 Search food categories
@@ -387,11 +512,15 @@ export default function HomePage() {
                 placeholder="Search pickles, podis, sweets..."
               />
               {query && (
-                <button type="button" onClick={() => setQuery("")} aria-label="Clear search">
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                >
                   <Icon name="x" size={18} />
                 </button>
               )}
-            </Reveal>
+            </div>
 
             <motion.div layout className="category-grid">
               <AnimatePresence mode="popLayout">
@@ -419,10 +548,21 @@ export default function HomePage() {
                       }}
                     />
                     <span className="card-shade" />
-                    <span className="category-copy">
+                    <motion.span
+                      className="category-copy"
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.65 }}
+                      variants={reveal}
+                      transition={{
+                        duration: 0.72,
+                        delay: index * 0.06,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
                       <strong>{category.title}</strong>
                       <span>{category.subtitle}</span>
-                    </span>
+                    </motion.span>
                     <span className="round-arrow">
                       <Icon name="arrow" size={18} />
                     </span>
@@ -432,7 +572,8 @@ export default function HomePage() {
             </motion.div>
             {filteredCategories.length === 0 && (
               <p className="empty-state">
-                No category found for “{query}”. Try pickle, podi, sweets, or snacks.
+                No category found for “{query}”. Try pickle, podi, sweets, or
+                snacks.
               </p>
             )}
           </div>
@@ -440,7 +581,7 @@ export default function HomePage() {
 
         <section className="section about-section" id="about">
           <div className="shell about-grid">
-            <Reveal className="about-image-wrap">
+            <div className="about-image-wrap">
               <Image
                 src="/images/about-pickle-making.png"
                 alt="Traditional mango pickle being prepared by hand in a brass bowl"
@@ -451,8 +592,8 @@ export default function HomePage() {
                 <span>Small batch</span>
                 <strong>Made with care</strong>
               </div>
-            </Reveal>
-            <Reveal className="about-copy" delay={0.1}>
+            </div>
+            <TextReveal className="about-copy" delay={0.1}>
               <p className="eyebrow">Rooted in home</p>
               <h2>Recipes that remember where they came from.</h2>
               <p>
@@ -466,19 +607,23 @@ export default function HomePage() {
                 time-honoured methods.
               </p>
               <div className="about-values">
-                <span><Icon name="leaf" size={20} /> Responsibly sourced</span>
-                <span><Icon name="heart" size={20} /> Family recipes</span>
+                <span>
+                  <Icon name="leaf" size={20} /> Responsibly sourced
+                </span>
+                <span>
+                  <Icon name="heart" size={20} /> Family recipes
+                </span>
               </div>
               <a className="text-link" href="#contact">
                 Meet the family behind Vibhaa <Icon name="arrow" size={18} />
               </a>
-            </Reveal>
+            </TextReveal>
           </div>
         </section>
 
         <section className="section product-section" id="products">
           <div className="shell">
-            <Reveal className="section-heading section-heading--split">
+            <TextReveal className="section-heading section-heading--split">
               <div>
                 <p className="eyebrow">From this week’s kitchen</p>
                 <h2>Food worth passing around</h2>
@@ -486,11 +631,15 @@ export default function HomePage() {
               <a className="text-link desktop-only" href="#contact">
                 View all products <Icon name="arrow" size={18} />
               </a>
-            </Reveal>
+            </TextReveal>
             <div className="product-grid">
               {products.map((product, index) => (
-                <Reveal className="product-card" key={product.name} delay={index * 0.07}>
-                  <a className="product-image" href="#contact" aria-label={`Enquire about ${product.name}`}>
+                <div className="product-card" key={product.name}>
+                  <a
+                    className="product-image"
+                    href="#contact"
+                    aria-label={`Enquire about ${product.name}`}
+                  >
                     <Image
                       src="/images/food-collection.png"
                       alt={product.name}
@@ -502,16 +651,18 @@ export default function HomePage() {
                       }}
                     />
                     <span className="product-tag">{product.tag}</span>
-                    <span className="product-arrow"><Icon name="arrow" size={18} /></span>
+                    <span className="product-arrow">
+                      <Icon name="arrow" size={18} />
+                    </span>
                   </a>
-                  <div className="product-info">
+                  <TextReveal className="product-info" delay={index * 0.07}>
                     <div>
                       <h3>{product.name}</h3>
                       <p>{product.detail}</p>
                     </div>
                     <strong>{product.price}</strong>
-                  </div>
-                </Reveal>
+                  </TextReveal>
+                </div>
               ))}
             </div>
           </div>
@@ -519,7 +670,7 @@ export default function HomePage() {
 
         <section className="contact-section" id="contact">
           <div className="shell contact-grid">
-            <Reveal className="contact-copy">
+            <TextReveal className="contact-copy">
               <p className="eyebrow eyebrow--light">Let’s talk food</p>
               <h2>Planning a feast or looking for something special?</h2>
               <p>
@@ -535,19 +686,27 @@ export default function HomePage() {
                 <Icon name="whatsapp" size={21} />
                 Chat on WhatsApp
               </a>
-            </Reveal>
+            </TextReveal>
 
-            <Reveal className="contact-card" delay={0.1}>
+            <div className="contact-card">
               {submitted ? (
                 <motion.div
                   className="form-success"
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                 >
-                  <span><Icon name="heart" size={28} /></span>
+                  <span>
+                    <Icon name="heart" size={28} />
+                  </span>
                   <h3>Thank you!</h3>
-                  <p>We’ve received your note and will get back to you shortly.</p>
-                  <button type="button" className="text-link" onClick={() => setSubmitted(false)}>
+                  <p>
+                    We’ve received your note and will get back to you shortly.
+                  </p>
+                  <button
+                    type="button"
+                    className="text-link"
+                    onClick={() => setSubmitted(false)}
+                  >
                     Send another message
                   </button>
                 </motion.div>
@@ -556,34 +715,57 @@ export default function HomePage() {
                   <div className="form-row">
                     <label>
                       Your name
-                      <input name="name" type="text" autoComplete="name" required placeholder="Full name" />
+                      <input
+                        name="name"
+                        type="text"
+                        autoComplete="name"
+                        required
+                        placeholder="Full name"
+                      />
                     </label>
                     <label>
                       Phone number
-                      <input name="phone" type="tel" autoComplete="tel" required placeholder="+91 98765 43210" />
+                      <input
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel"
+                        required
+                        placeholder="+91 98765 43210"
+                      />
                     </label>
                   </div>
                   <label>
                     Email address
-                    <input name="email" type="email" autoComplete="email" required placeholder="you@example.com" />
+                    <input
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      placeholder="you@example.com"
+                    />
                   </label>
                   <label>
                     How can we help?
-                    <textarea name="message" rows={4} required placeholder="Tell us what you’re looking for..." />
+                    <textarea
+                      name="message"
+                      rows={4}
+                      required
+                      placeholder="Tell us what you’re looking for..."
+                    />
                   </label>
                   <button className="button button--dark" type="submit">
                     Send enquiry <Icon name="arrow" size={19} />
                   </button>
                 </form>
               )}
-            </Reveal>
+            </div>
           </div>
         </section>
 
         <footer className="footer">
-          <Reveal className="shell">
+          <div className="shell">
             <div className="footer-grid">
-              <div className="footer-brand">
+              <TextReveal className="footer-brand">
                 <BrandMark light />
                 <p>
                   Honest Andhra food, made in small batches and shared with
@@ -591,30 +773,54 @@ export default function HomePage() {
                 </p>
                 <a href="mailto:hello@vibhaafoods.com">hello@vibhaafoods.com</a>
                 <a href="tel:+919876543210">+91 98765 43210</a>
-              </div>
-              {Object.entries(footerLinks).map(([heading, links]) => (
-                <div className="footer-links" key={heading}>
+              </TextReveal>
+              {Object.entries(footerLinks).map(([heading, links], index) => (
+                <TextReveal
+                  className="footer-links"
+                  key={heading}
+                  delay={index * 0.06}
+                >
                   <h3>{heading}</h3>
-                  {links.map((link) => <a href="#home" key={link}>{link}</a>)}
-                </div>
+                  {links.map((link) => (
+                    <a href="#home" key={link}>
+                      {link}
+                    </a>
+                  ))}
+                </TextReveal>
               ))}
-              <div className="newsletter">
+              <TextReveal className="newsletter" delay={0.12}>
                 <p className="eyebrow eyebrow--light">Join the table</p>
                 <h3>Recipes, new batches, and a little kitchen news.</h3>
                 <form onSubmit={(event) => event.preventDefault()}>
-                  <label className="sr-only" htmlFor="newsletter-email">Email address</label>
-                  <input id="newsletter-email" type="email" placeholder="Your email address" required />
-                  <button type="submit" aria-label="Subscribe to our newsletter">
+                  <label className="sr-only" htmlFor="newsletter-email">
+                    Email address
+                  </label>
+                  <input
+                    id="newsletter-email"
+                    type="email"
+                    placeholder="Your email address"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    aria-label="Subscribe to our newsletter"
+                  >
                     <Icon name="arrow" size={19} />
                   </button>
                 </form>
-              </div>
+              </TextReveal>
             </div>
             <div className="footer-bottom">
-              <p>© {new Date().getFullYear()} Vibhaa Foods. Made with care in Andhra Pradesh.</p>
-              <div><a href="#home">Instagram</a><a href="#home">Facebook</a></div>
+              <p>
+                © {new Date().getFullYear()} Vibhaa Foods. Made with care in
+                Andhra Pradesh.
+              </p>
+              <div>
+                <a href="#home">Instagram</a>
+                <a href="#home">Facebook</a>
+              </div>
             </div>
-          </Reveal>
+          </div>
         </footer>
       </main>
     </MotionConfig>

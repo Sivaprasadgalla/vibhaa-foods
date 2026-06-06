@@ -1169,7 +1169,8 @@ img {
   }
 
   .desktop-nav {
-    top: 68px;
+      top: 72px;
+      width: 100%;
   }
 
   .brand {
