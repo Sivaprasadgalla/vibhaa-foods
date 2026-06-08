@@ -184,7 +184,7 @@ function BrandMark({ light = false }: { light?: boolean }) {
     <a className={`brand ${light ? "brand--light" : ""}`} href="#home">
       <span className="brand-mark">V</span>
       <span>
-        <strong>Vibhaa</strong>
+        <strong>Vabhaa</strong>
         <small>FOODS</small>
       </span>
     </a>
@@ -296,7 +296,7 @@ export default function HomePage() {
                 href="https://wa.me/919876543210"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Chat with Vibhaa Foods on WhatsApp"
+                aria-label="Chat with vabhaa Foods on WhatsApp"
               >
                 <Icon name="whatsapp" size={20} />
                 <span>Order on WhatsApp</span>
@@ -597,7 +597,7 @@ export default function HomePage() {
               <p className="eyebrow">Rooted in home</p>
               <h2>Recipes that remember where they came from.</h2>
               <p>
-                Vibhaa began with the aromas of a family kitchen in coastal
+                vabhaa began with the aromas of a family kitchen in coastal
                 Andhra: mangoes drying in the sun, spices roasting slowly, and
                 jars lined up for the season ahead.
               </p>
@@ -615,7 +615,7 @@ export default function HomePage() {
                 </span>
               </div>
               <a className="text-link" href="#contact">
-                Meet the family behind Vibhaa <Icon name="arrow" size={18} />
+                Meet the family behind vabhaa <Icon name="arrow" size={18} />
               </a>
             </TextReveal>
           </div>
@@ -771,7 +771,7 @@ export default function HomePage() {
                   Honest Andhra food, made in small batches and shared with
                   warmth.
                 </p>
-                <a href="mailto:hello@vibhaafoods.com">hello@vibhaafoods.com</a>
+                <a href="mailto:hello@vabhaafoods.com">hello@vabhaafoods.com</a>
                 <a href="tel:+919876543210">+91 98765 43210</a>
               </TextReveal>
               {Object.entries(footerLinks).map(([heading, links], index) => (
@@ -812,7 +812,7 @@ export default function HomePage() {
             </div>
             <div className="footer-bottom">
               <p>
-                © {new Date().getFullYear()} Vibhaa Foods. Made with care in
+                © {new Date().getFullYear()} vabhaa Foods. Made with care in
                 Andhra Pradesh.
               </p>
               <div>
